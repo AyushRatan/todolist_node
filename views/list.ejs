@@ -1,0 +1,20 @@
+<%- include("header"); %>
+
+    <div class="box" id="heading">
+        <h1><%= Listtitle %> ToDo</h1>
+    </div>
+    
+    <div class="box">
+        <% for( let x of checklist){ %>
+            <div class="item">
+                <input type="checkbox">
+                <p><%= x %></p>
+            </div>
+         <%}%>
+
+         <form class="item" action="/" method="post">
+            <input type="text" name="item" placeholder="add item" autocomplete="off">
+            <button type="submit" name="list_type" value=<%= Listtitle %>>+</button>
+        </form>
+    </div>
+<%- include("footer"); -%>
