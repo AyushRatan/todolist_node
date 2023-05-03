@@ -53,7 +53,7 @@ app.get("/",function(req,res){
             if(items.length==0){
                 Item.insertMany(defaultitems).then(
                     ()=>"Default items inserted"
-                )
+                ).catch((err)=>{console.log(err)})
                 res.redirect("/")
             }else{
                 res.render("list",{Listtitle:"Today",checklist:items});
@@ -109,7 +109,7 @@ app.post("/",function(req,res){
                 foundlist.save();
                 res.redirect("/"+listname);
             }
-        )
+        ).catch((err)=>{console.log(err)});
     }
 
 });
@@ -124,7 +124,7 @@ app.post("/delete",function(req,res){
             ()=>{
                 res.redirect("/")
             }
-        )
+        ).catch((err)=>{console.log(err)});
     }else{
         List.findOneAndUpdate({name:listname},{$pull:{items:{_id:checkbox_id}}}).then(
             ()=>{
